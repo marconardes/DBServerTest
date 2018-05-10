@@ -6,6 +6,9 @@ import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
+
 import org.junit.Test;
 
 import users.ListOfUsers;
@@ -37,16 +40,15 @@ public class UsersTest {
 	@Test
 	public void UsuarioQueNaoVotou()
 	{
-		User user = new User(1,"Usuario1","1", false );
-		assertFalse(user.isVotouHoje());
+		User user = new User(1,"Usuario1","1", null );
+		assertFalse(user.isVotingToday(LocalDate.now()));
 	}
 	
 	@Test
 	public void UsuarioQueVotou()
 	{
-		User user = new User(1,"Usuario1","1", true );
-				
-		assertTrue(user.isVotouHoje());
+		User user = new User(1,"Usuario1","1", LocalDate.now() );
+		assertTrue(user.isVotingToday(LocalDate.now()));
 	}
 	
 }	

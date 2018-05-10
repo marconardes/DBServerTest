@@ -12,7 +12,7 @@ public class Restaurant {
 
 		this.id = id;
 		this.nome = nome;
-		this.liberado = LocalDate.now();
+		this.liberado = null;
 	}
 	public int getId() {
 		return id;
@@ -33,7 +33,15 @@ public class Restaurant {
 		this.liberado = liberado;
 	}
 	
+	public boolean verificaBloqueio(LocalDate ld)
+	{
 	
+		if(liberado==null)
+		{
+			return true;
+		}
+		return ld.isAfter(liberado)||ld.isEqual(liberado);
+	}
 	
 	
 

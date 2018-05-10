@@ -5,6 +5,7 @@ import java.time.LocalDate;
 
 import org.junit.Test;
 
+import exeptions.VoteExeption;
 import restaurant.Restaurant;
 import restaurant.Restaurants;
 import users.ListOfUsers;
@@ -14,7 +15,7 @@ import vote.UserVote;
 public class UserVottingTest {
 
 	@Test
-	public void OneVote() {
+	public void OneVote() throws VoteExeption {
 		ListOfUsers userList = new ListOfUsers();
 		userList.populate();
 		User user = userList.selectUser(1);
@@ -30,7 +31,7 @@ public class UserVottingTest {
 	
 	
 	@Test
-	public void TwoVoteInDay() {
+	public void TwoVoteInDay() throws VoteExeption {
 		ListOfUsers userList = new ListOfUsers();
 		userList.populate();
 		User user = userList.selectUser(1);
@@ -48,7 +49,7 @@ public class UserVottingTest {
 	}
 	
 	@Test
-	public void TwoVoteInDiferentDay() {
+	public void TwoVoteInDiferentDay() throws VoteExeption {
 		ListOfUsers userList = new ListOfUsers();
 		userList.populate();
 		User user = userList.selectUser(1);
@@ -66,7 +67,7 @@ public class UserVottingTest {
 	}
 	
 	@Test
-	public void TwoUsersVote() {
+	public void TwoUsersVote() throws VoteExeption {
 		ListOfUsers userList = new ListOfUsers();
 		userList.populate();
 		User user = userList.selectUser(1);
@@ -82,5 +83,5 @@ public class UserVottingTest {
 		userList.setUsers(votting.vote(user,restaurant,cd));
 	}
 
-
+	
 }

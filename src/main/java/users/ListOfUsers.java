@@ -1,7 +1,14 @@
 package users;
 
+import java.io.IOException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+
+import org.apache.commons.csv.CSVParser;
+import org.apache.commons.csv.CSVRecord;
+
+import common.CsvFile;
 
 public class ListOfUsers {
 
@@ -19,18 +26,65 @@ public class ListOfUsers {
 	}
 
 	public void populate() {
-		users.add(new User(1,"Pessoa1", "1", false));
-		users.add(new User(2,"Pessoa2", "2", false));
-		users.add(new User(3,"Pessoa3", "3", false));
-		users.add(new User(4,"Pessoa4", "4", false));
-		users.add(new User(5,"Pessoa5", "5", false));
-		users.add(new User(6,"Pessoa6", "6", false));
-		users.add(new User(7,"Pessoa7", "7", false));
-		users.add(new User(8,"Pessoa8", "8", false));
-		users.add(new User(9,"Pessoa9", "9", false));
-		users.add(new User(10,"Pessoa10", "10", false));
+		CsvFile csv = new CsvFile();
+		try {
+			CSVParser parser = csv.loadCsv("Users.csv");
+			
+			for (CSVRecord csvRecord : parser) {
+				System.out.println(csvRecord.get(0));
+				if(!csvRecord.get(0).equals("id"))
+				{
+					CharSequence cs = csvRecord.get(3);
+					LocalDate ld = null;
+					if(!cs.equals("null") )
+					{
+						ld = LocalDate.parse(cs);
+					}
+					
+					User tuser = new User(Integer.parseInt(csvRecord.get(0)), csvRecord.get(1), csvRecord.get(2), ld);
+					
+					users.add(tuser);
+				}			
+			}
+			
+			
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
+		System.out.println("=-=====================");
 	}
+	
+	public void saveCSV()
+	{
+		List<List<String>> toFile= new ArrayList<>();		
+		List<String> header = new ArrayList<>();
+		header.add("id");
+		header.add("nome");
+		header.add("senha");
+		header.add("votouHoje");
+
+		for (User user : users) {
+			List<String> save = new ArrayList<>();
+			
+			save.add(String.valueOf(user.getId()));
+			save.add(String.valueOf(user.getNome()));
+			save.add(String.valueOf(user.getSenha()));
+			save.add(String.valueOf(user.getDataDaVotacao()));
+			
+			toFile.add(save);
+			
+			
+		}
+		CsvFile csv = new CsvFile();
+		try {
+			csv.CSVSave("Users.csv", toFile, header);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
 
 	public User selectUser(int id) {
 		for (User user : users) {
@@ -41,5 +95,17 @@ public class ListOfUsers {
 		}
 		return null;
 	}
-
+	
+	
+	public boolean allVote(LocalDate data)
+	{
+		
+		for (User user : users) {
+			if(!user.isVotingToday(data))
+			{
+				return false;
+			}
+		}
+		return true;
+	}
 }

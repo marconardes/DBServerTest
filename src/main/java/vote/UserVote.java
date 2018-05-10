@@ -6,6 +6,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+import exeptions.VoteExeption;
 import restaurant.Restaurant;
 import restaurant.Restaurants;
 import users.User;
@@ -21,11 +22,18 @@ public class UserVote {
 		this.restaurantsVotados = new ArrayList<>();
 	}
 
-	public List<User> vote(User user, Restaurant restaurant,LocalDate currentDate) {
+	public List<User> vote(User user, Restaurant restaurant,LocalDate currentDate) throws VoteExeption {
 		
 		if(user.getDataDaVotacao()!=currentDate)
 		{
-			restaurantsVotados.add(restaurant);
+			System.out.println(restaurant.verificaBloqueio(currentDate));
+			
+			if(restaurant.verificaBloqueio(currentDate))
+			{
+				restaurantsVotados.add(restaurant);
+			}
+			else
+				throw new VoteExeption();
 			for(int c= 0; c<users.size() ; c++)
 			{
 				if(users.get(c).getId() ==user.getId()){

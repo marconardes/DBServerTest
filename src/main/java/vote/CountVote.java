@@ -73,7 +73,7 @@ public class CountVote {
 	public Restaurants updateRestaurants(Restaurants restaurantes, LocalDate ld)
 	{
 		List<Restaurant> restaurantesUpdate = restaurantes.getRestaurants();
-		System.out.println("=======================");
+
 		int minus = ld.getDayOfWeek().getValue()-1;
 		LocalDate nextDayToVote = ld.minusDays(minus);
 		nextDayToVote = nextDayToVote.plusDays(7);

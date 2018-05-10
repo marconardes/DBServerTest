@@ -2,6 +2,7 @@ package dbserverTest;
 
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
 import java.time.LocalDate;
@@ -10,6 +11,7 @@ import org.apache.derby.impl.sql.catalog.SYSFOREIGNKEYSRowFactory;
 import org.junit.Before;
 import org.junit.Test;
 
+import exeptions.VoteExeption;
 import restaurant.Restaurant;
 import restaurant.Restaurants;
 import users.ListOfUsers;
@@ -39,7 +41,7 @@ public class CountingVotesTest {
 		
 	}
 	
-	private void dayOneVotting(LocalDate ld) {
+	private void dayOneVotting(LocalDate ld) throws VoteExeption {
 		System.out.println("Inicializando dia 1");
 		
 		 
@@ -84,39 +86,38 @@ public class CountingVotesTest {
 		restaurant = restaurantes.selectRestaurant(1);
 		lusers.setUsers(votting.vote(user,restaurant,ld));
 
-		
-		System.out.println(votting.getRestaurantsVotados().toString());
-		
 		}
 	
 	@Test
-	public void countVottingsOneDayTest()
+	public void countVottingsOneDayTest() throws VoteExeption
 	{
 		LocalDate ld = LocalDate.of(2018, 05, 7);
 		dayOneVotting(ld);
 		CountVote cv =new CountVote();
-		
-		
+		assertTrue(lusers.allVote(ld));
 		cv.computeVotes(votting.getRestaurantsVotados());
 
+		
+		
 		assertEquals("Churascaria",cv.retornaVencedor());
 	}
 	
 	
 	
-	@Test 
-	public void countVottingsExeptionVottingTest()
+	@Test(expected=VoteExeption.class)
+	public void countVottingsExeptionVottingTest() throws VoteExeption
 	{
 	    
 		LocalDate ld = LocalDate.of(2018, 05, 7);
 		dayOneVotting(ld);
 		CountVote cv =new CountVote();
 		
+		
 		cv.computeVotes(votting.getRestaurantsVotados());
 		
 		cv.retornaVencedor();
 		
-		cv.updateRestaurants(restaurantes,ld);
+		restaurantes = cv.updateRestaurants(restaurantes,ld);
 		
 		
 		ld = LocalDate.of(2018, 05, 8);

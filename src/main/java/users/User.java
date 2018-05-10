@@ -7,16 +7,15 @@ public class User {
 	private int id;
 	private String nome;
 	private String senha;
-	private boolean votouHoje;
 	//INTERN
 	private LocalDate dataDaVotacao;
 
-	public User(int id, String nome, String senha, boolean votouHoje) {
+	public User(int id, String nome, String senha, LocalDate dataDaVotacao) {
 		// TODO Auto-generated constructor stub
 		this.id =id;
 		this.nome = nome;
 		this.senha = senha;
-		this.votouHoje = votouHoje;
+		this.dataDaVotacao = dataDaVotacao;
 	}
 	
 	
@@ -49,14 +48,6 @@ public class User {
 		this.senha = senha;
 	}
 
-	public boolean isVotouHoje() {
-		return votouHoje;
-	}
-
-	public void setVotouHoje(boolean votouHoje) {
-		this.votouHoje = votouHoje;
-	}
-
 	public LocalDate getDataDaVotacao() {
 		return dataDaVotacao;
 	}
@@ -65,13 +56,12 @@ public class User {
 		this.dataDaVotacao = dataDaVotacao;
 	}
 
-
-
-	@Override
-	public String toString() {
-		return "User [id=" + id + ", nome=" + nome + ", senha=" + senha + ", votouHoje=" + votouHoje
-				+ ", dataDaVotacao=" + dataDaVotacao + "]";
+	public boolean isVotingToday(LocalDate data)
+	{	
+		if(dataDaVotacao == null){
+			return false;
+		}
+		return data.isEqual(dataDaVotacao);		
 	}
-
 	
 }
