@@ -1,21 +1,21 @@
 package dbserverTest;
 
-import static org.junit.Assert.fail;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertTrue;
 
-import java.time.LocalDate;
+import org.junit.Test;
 
-import org.junit.jupiter.api.Test;
-
-import restaurant.Restaurants;
 import users.ListOfUsers;
 import users.User;
 
-class UsersTest {
+public class UsersTest {
 
 	
 	@Test
-	void nomeNaLista() {
+	public void nomeNaLista() {
 		ListOfUsers userList = new ListOfUsers();
 		userList.populate();
 		User user = (User)userList.selectUser(1);
@@ -26,7 +26,7 @@ class UsersTest {
 	}
 	
 	@Test
-	void nomeForaDaLista() {
+	public void nomeForaDaLista() {
 		ListOfUsers userList = new ListOfUsers();
 		userList.populate();
 		User user = userList.selectUser(15);
@@ -35,14 +35,14 @@ class UsersTest {
 	
 	
 	@Test
-	void UsuarioQueNaoVotou()
+	public void UsuarioQueNaoVotou()
 	{
 		User user = new User(1,"Usuario1","1", false );
 		assertFalse(user.isVotouHoje());
 	}
 	
 	@Test
-	void UsuarioQueVotou()
+	public void UsuarioQueVotou()
 	{
 		User user = new User(1,"Usuario1","1", true );
 				

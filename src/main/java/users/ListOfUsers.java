@@ -33,12 +33,9 @@ public class ListOfUsers {
 	}
 
 	public User selectUser(int id) {
-		System.out.println(id);
 		for (User user : users) {
-			System.out.println(user.getId());
 			if(user.getId() ==id)
 			{
-				System.out.println(user);
 				return user;
 			}
 		}

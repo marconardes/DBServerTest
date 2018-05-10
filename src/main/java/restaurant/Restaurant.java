@@ -1,15 +1,18 @@
 package restaurant;
 
+import java.time.LocalDate;
+
 public class Restaurant {
-	int id;
-	String nome;
-	
+	private int id;
+	private String nome;
+	private LocalDate liberado;
 	
 	
 	public Restaurant(int id, String nome) {
 
 		this.id = id;
 		this.nome = nome;
+		this.liberado = LocalDate.now();
 	}
 	public int getId() {
 		return id;
@@ -23,6 +26,14 @@ public class Restaurant {
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
+	public LocalDate getLiberado() {
+		return liberado;
+	}
+	public void setLiberado(LocalDate liberado) {
+		this.liberado = liberado;
+	}
+	
+	
 	
 	
 

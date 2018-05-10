@@ -39,7 +39,7 @@ public class Restaurants {
 	public Restaurant selectRestaurant(int id) {
 		
 		for (Restaurant restaurant : restaurants) {
-			if(restaurant.id == id)
+			if(restaurant.getId() == id)
 			{
 				return restaurant;
 			}

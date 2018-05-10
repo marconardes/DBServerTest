@@ -1,5 +1,7 @@
 package vote;
 
+
+//TODO Modificar para reduzir variação de codigos............
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -12,7 +14,6 @@ public class UserVote {
 
 	private List<User> users;
 	private List<Restaurant> restaurantsVotados;
-	boolean resposta;
 	
 	public UserVote(List<User> users) {
 		// TODO Auto-generated constructor stub
@@ -29,25 +30,28 @@ public class UserVote {
 			{
 				if(users.get(c).getId() ==user.getId()){
 
-					resposta=true;
 					user.setDataDaVotacao(currentDate);
 					users.set(c, user);
 				}
 			}
 		}
-		else
-		{
-			resposta = false;
-		}
 		return users;
 	}
 
-	public boolean isResposta() {
-		return resposta;
+	public List<User> getUsers() {
+		return users;
 	}
 
-	public void setResposta(boolean resposta) {
-		this.resposta = resposta;
+	public void setUsers(List<User> users) {
+		this.users = users;
+	}
+
+	public List<Restaurant> getRestaurantsVotados() {
+		return restaurantsVotados;
+	}
+
+	public void setRestaurantsVotados(List<Restaurant> restaurantsVotados) {
+		this.restaurantsVotados = restaurantsVotados;
 	}
 	
 	
