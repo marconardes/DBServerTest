@@ -35,5 +35,15 @@ O horario valido para escolher os restaurantes é das 8:00 as 11:30, mas não se
 | Botão          | Efeito         | 
 | -------------  |:-------------:|
 | Hora Valida       | Coloca o sistema em uma hora valida             |
-| Proximo dia       | Passa um dia no sistema e coloca em uma hora valida             |
-| Usuario3       | 3             |
+| Finaliza a votação       | Coloca o dia no final do periodo             |
+
+
+Destaques
+==========
+A classe VottingSystem, está bem implementada, e retornando corretamente os dados, embora precise melhorar um pouco.
+
+O que melhorar
+================
+A interface grafica está muito ruim, vou migrar para a web essa semana.
+Criar um cadastro de usuarios e restaurantes, ainda não tem.
+Melhorar a cobertura dos testes.
