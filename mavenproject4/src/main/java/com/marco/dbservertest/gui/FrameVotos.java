@@ -115,7 +115,7 @@ public class FrameVotos extends javax.swing.JFrame {
         try {
             
             this.setVisible(false);
-                        new FrameInicial().setVisible(vs.vote(restaurante));
+                        new FrameInicial(vs.getLd(),vs.getLt()).setVisible(vs.vote(restaurante));
 
         } catch (Exception ex) {
             Logger.getLogger(FrameVotos.class.getName()).log(Level.SEVERE, null, ex);

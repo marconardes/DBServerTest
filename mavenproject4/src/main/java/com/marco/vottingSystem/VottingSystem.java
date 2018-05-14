@@ -97,6 +97,8 @@ public class VottingSystem {
 		user.setData(ld);
 		
 		usersControler.edit(user);
+                
+                usersControler.findUsuarioEntitiesRestantes(ld);
 		votosController.create(voto);
 		
 		return true;	
@@ -199,9 +201,8 @@ public class VottingSystem {
 		
                 Restaurantes r = null;
 		int i =0;
-		
                 
-		if((lt.isAfter(horaFinal))||(listOfUsers.isEmpty()))
+                if((lt.isAfter(horaFinal))||(listOfUsers.isEmpty()))
 		{
 			geraResultados();
 			  for (Map.Entry<Restaurantes,Integer> entry : restauranteContagem.entrySet()) {

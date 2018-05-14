@@ -38,16 +38,21 @@ public class FrameInicial extends javax.swing.JFrame {
     public FrameInicial() {
         ld = LocalDate.now();
         lt = LocalTime.now();
+       
         initComponents();
-        
+        cUser.setEnabled(false);
         prepare();
+         
     }
     
-    public FrameInicial(LocalDate ld) {
+    
+    
+    public FrameInicial(LocalDate ld,LocalTime lt) {
         this.ld = ld;
-        this.lt = LocalTime.now();;
+        this.lt = lt;
+
         initComponents();
-        
+       
         prepare();
     }
     
@@ -57,9 +62,8 @@ public class FrameInicial extends javax.swing.JFrame {
      
         if(vs.prepare(ld,lt))
         {
-            
-                   initCustonsComponents();
- 
+            cUser.setEnabled(true);
+                    initCustonsComponents();
         }
         else
         {
@@ -101,7 +105,6 @@ public class FrameInicial extends javax.swing.JFrame {
         jButton2 = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jButton5 = new javax.swing.JButton();
@@ -137,14 +140,12 @@ public class FrameInicial extends javax.swing.JFrame {
             }
         });
 
-        jButton3.setText("Proximo dia");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        jButton4.setText("Finaliza Votação");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                jButton4ActionPerformed(evt);
             }
         });
-
-        jButton4.setText("Finaliza Votação");
 
         jLabel2.setText("Altera variaveis.");
 
@@ -154,11 +155,9 @@ public class FrameInicial extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(jButton1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 179, Short.MAX_VALUE)
                 .addComponent(jButton4)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addContainerGap())
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel2)
@@ -172,7 +171,6 @@ public class FrameInicial extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
-                    .addComponent(jButton3)
                     .addComponent(jButton4))
                 .addContainerGap())
         );
@@ -202,9 +200,7 @@ public class FrameInicial extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(pSenha)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 331, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 9, Short.MAX_VALUE)))))
+                            .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -258,13 +254,6 @@ public class FrameInicial extends javax.swing.JFrame {
         
     }//GEN-LAST:event_jButton2ActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
-        ld = ld.plusDays(1);
-        lt= LocalTime.of(11, 00);
-        prepare();
-    }//GEN-LAST:event_jButton3ActionPerformed
-
     private void pSenhaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pSenhaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_pSenhaActionPerformed
@@ -272,12 +261,20 @@ public class FrameInicial extends javax.swing.JFrame {
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
           try {
               // TODO add your handling code here:
-              vs.prepare();
+             vs.prepare(ld, lt);
               JOptionPane.showMessageDialog(null,"Resultado da votação "+ vs.resultadosEleicao());
+              System.exit(0);
           } catch (IlegalClosingVotting ex) {
+              JOptionPane.showMessageDialog(null,"Ainda não pode ser verificado o resultado da votação");
               Logger.getLogger(FrameInicial.class.getName()).log(Level.SEVERE, null, ex);
           }
     }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        // TODO add your handling code here:
+        lt = LocalTime.of(12, 00);
+        vs.prepare(ld, lt);
+    }//GEN-LAST:event_jButton4ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -318,7 +315,6 @@ public class FrameInicial extends javax.swing.JFrame {
     private javax.swing.JComboBox<Usuario> cUser;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JLabel jLabel1;
