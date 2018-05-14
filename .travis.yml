@@ -9,5 +9,6 @@ sudo: required
 jdk:
   - oraclejdk8
 
-install:
+script:
 - mvn -f mavenproject4/pom.xml clean test
+
