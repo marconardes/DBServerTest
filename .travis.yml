@@ -1,7 +1,7 @@
 services:
   - mysql
   
-before_script: cd project
+before_script: cd mavenproject4
   
 language: java
 sudo: required
