@@ -22,13 +22,13 @@ Para executar o programa use java -jar vottingRestaurants-jar-with-dependencies.
 
 Execução
 =============================
-Foi criado apenas 3 usuario.
-é selecionado em uma lista.
-| Usuario        | Senha         | 
+Foi criado apenas 3 usuario que são selecionadoe em uma lista.
+
+| Usuario          | Senha         | 
 | -------------  |:-------------:|
-| Usuario1       | 1             |
-| Usuario2       | 2             |
-| Usuario3       | 3             |
+| Usuario1         | 1             |
+| Usuario2         | 2             |
+| Usuario3         | 3             |
 
 O horario valido para escolher os restaurantes é das 8:00 as 11:30, mas não se preocupe, foi colocado uns botões que alteram a hora de teste,
 
