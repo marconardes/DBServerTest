@@ -1,12 +1,10 @@
 services:
   - mysql
-  
-before_script: cd mavenproject4
-  
+    
 language: java
 sudo: required
 jdk:
   - oraclejdk8
 
 install:
-- mvn clean test
+- mvn -f ~/mavenproject4 clean test
