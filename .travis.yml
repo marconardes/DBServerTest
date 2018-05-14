@@ -7,4 +7,4 @@ jdk:
   - oraclejdk8
 
 install:
-- mvn -f ~/mavenproject4/pom.xml clean test
+- mvn -f mavenproject4/pom.xml clean test
