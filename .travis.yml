@@ -1,5 +1,8 @@
 services:
   - mysql
+  
+before_install:
+  - mysql -e 'CREATE DATABASE eleicao;'
     
 language: java
 sudo: required
